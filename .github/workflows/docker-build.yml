@@ -4,7 +4,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: '0 19 * * 6'  # Every Saturday at 7:00 PM
+    - cron: '0 19 * * 6'  #Every Saturday at 7:00 PM
 
 jobs:
   build:
