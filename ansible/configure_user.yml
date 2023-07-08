@@ -1,5 +1,5 @@
 - name: Configure New User
-  hosts: 35.177.228.218
+  hosts: localhost
   connection: local
   become: yes
 
