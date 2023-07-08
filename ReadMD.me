@@ -20,6 +20,17 @@ The image is push to Dockerhub periodically on Saturday's at 7pm
 
 # Configuring Linux machine with Ansible #
 
+Terraform for provisioning Ec2 Ubuntu Server.
+
+
+Generate SSH key on local machine with the command:
+
+ssh-keygen -t rsa -b 2048
+
+Provide the right path to your ssh key in the provisioner block
+
+Provide your public_key in resoure aws_key_pair block
+
 Terraform to provisioned Ec2 instance by running the following command:
 
 $ terraform init
