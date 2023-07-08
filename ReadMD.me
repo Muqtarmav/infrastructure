@@ -20,7 +20,13 @@ The image is push to Dockerhub periodically on Saturday's at 7pm
 
 # Configuring Linux machine with Ansible #
 
-Terraform to provisioned Ec2 instance 
+Terraform to provisioned Ec2 instance by running the following command:
+
+$ terraform init
+
+$ terraform plan
+
+$ terraform apply
 
 SSH into the Ec2 Instance
 
@@ -30,6 +36,6 @@ Install ansible on the Ubuntu server with the following command:
 
 $ sudo apt install ansible-core
 
-Run the Playbook with this  command:
+Run the Playbook with this command:
 
 $ ansible-playbook -i inventory  configure_user.yml
