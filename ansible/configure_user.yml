@@ -1,0 +1,65 @@
+- name: Configure New User
+  hosts: 35.177.228.218
+  connection: local
+  become: yes
+
+  tasks:
+    - name: Create /better-place directory
+      file:
+        path: /better-place
+        state: directory
+
+    - name: Create user 'john'
+      user:
+        name: john
+        home: /better-place/john
+        uid: 1234
+        createhome: yes
+
+    - name: Copy nice-script.sh to user's home directory
+      copy:
+        src: /home/ubuntu/nice-script.sh
+        dest: /better-place/john/nice-script.sh
+        mode: 0755
+        owner: john
+        group: john
+        remote_src: true
+
+
+
+    - name: Add sudoers entry for user 'john'
+      lineinfile:
+        path: /etc/sudoers
+        line: "john ALL=(ALL) NOPASSWD: /usr/bin/whoami"
+        validate: "visudo -cf %s"
+
+    - name: Install required packages
+      apt:
+        name: ['tmux', 'vim']
+        state: present
+
+    - name: Install unzip
+      apt:
+        name: unzip
+        state: present
+
+    - name: Download Terraform package
+      get_url:
+        url: "https://releases.hashicorp.com/terraform/1.0.0/terraform_1.0.0_linux_amd64.zip"
+        dest: /tmp/terraform.zip
+
+    - name: Extract Terraform package
+      command: unzip -o /tmp/terraform.zip -d /tmp/terraform_extracted
+      args:
+        creates: /tmp/terraform_extracted 
+
+    - name: Move Terraform binary to /usr/local/bin/
+      command: mv /tmp/terraform_extracted/terraform /usr/local/bin/
+      args:
+        creates: /usr/local/bin/terraform
+
+
+    - name: Set permissions for Terraform
+      file:
+        path: /usr/local/bin/terraform
+        mode: "0755"
