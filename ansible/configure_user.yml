@@ -18,7 +18,7 @@
 
     - name: Copy nice-script.sh to user's home directory
       copy:
-        src: /home/ubuntu/nice-script.sh
+        src: /home/ubuntu/infrastructure/ansible/nice-script.sh
         dest: /better-place/john/nice-script.sh
         mode: 0755
         owner: john
