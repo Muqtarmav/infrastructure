@@ -1,0 +1,46 @@
+# Simple Python Flask Dockerized Application#
+
+Build the image using the following command.
+
+sudo docker build -t my-flask-app:latest .
+
+Run the Docker Container using the following command below 
+
+sudo docker run -d -p  5000:5000 my-flask-app 
+
+The application will be accessible at http:127.0.0.1:5000
+
+CI process with Github Action Workflows#
+
+The docker image builds upon a push on the main braanch 
+
+The image is push to Dockerhub periodically on Saturday's at 7pm
+
+
+
+# Configuring Linux machine with Ansible #
+
+Create Ec2 instance on AWS at region [eu-west-2]
+
+Select AMI ubuntu server 22.04 LTS(HVM) SSD Volume type, AMI-ID
+(ami-0eb260c4d5475b901)
+
+Select Instance type t2.micro
+
+Create a Key pair with type RSA and private key file format .pem
+
+Select Default VPC
+
+Create a Security Group and allow SSH traffic on PORT 22 
+
+Add EC2 Instance public Ip address to the inventory file
+
+On Configure New User on the yml file change the hosts to the instance public ip address
+
+Execute the playbook with the following command:
+
+ansible-playbook -i inventory configure_user.yml
+
+Verify installation by Running the following command on Ec2 instance
+
+terraform version
