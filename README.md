@@ -25,7 +25,7 @@ Terraform for provisioning Ec2 Ubuntu Server.
 
 Generate SSH key on local machine with the command:
 
-ssh-keygen -t rsa -b 2048
+$ ssh-keygen -t rsa -b 2048
 
 Provide the right path to your ssh key in the provisioner block
 
